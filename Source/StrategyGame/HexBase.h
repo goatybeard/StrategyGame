@@ -8,19 +8,19 @@
 
 /**The base struct to hold Hex coordinates and
  * arithmetic functions.
- *Inheriting from an Unreal class to benefit from garbage
- *collection and better integration with other Unreal classes.
+ * Inheriting from an Unreal class to benefit from garbage
+ * collection and better integration with other Unreal classes.
  */
 
-//UCLASS is a Macro function used in Unreal's compiler.
-//It allows you to change access to class by other parts of the engine
-//(Blueprints, Content Browser, etc.) and other metadata.
+// UCLASS is a Macro function used in Unreal's compiler.
+// It allows you to change access to class by other parts of the engine
+// (Blueprints, Content Browser, etc.) and other metadata.
 UCLASS()
 class STRATEGYGAME_API UHexBase : public UUserDefinedStruct
 {
-	//GENERATED_BODY is a macro that takes no arguments and
-	//"sets up the class to support the infrastructure
-	//required by the engine."
+	// GENERATED_BODY is a macro that takes no arguments and
+	// "sets up the class to support the infrastructure
+	// required by the engine."
 	GENERATED_BODY()
 
 private:
@@ -30,9 +30,9 @@ private:
 
 public:
 	// Default constructor.
-	//FYI: The U prefix denotes it is a gameplay object that
-	//cannot be directly instanced into the world. They are
-	//usually Components attached to Actors.
+	// FYI: The U prefix denotes it is a gameplay object that
+	// cannot be directly instanced into the world. They are
+	// usually Components attached to Actors.
 	UHexBase()
 	{
 		q_ = 0;
@@ -56,6 +56,10 @@ public:
 	const int32 q() { return q_; }
 	const int32 r() { return r_; }
 	const int32 s() { return -q_ - r_; }
+
+	const int32 q() const { return q_; }
+	const int32 r() const { return r_; }
+	const int32 s() const { return -q_ - r_; }
 	
 	// Check if two HexBase are the same HexBase.
 	friend bool operator== (UHexBase& a, UHexBase& b)
