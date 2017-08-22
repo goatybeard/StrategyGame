@@ -12,7 +12,7 @@
  * collection and better integration with other Unreal classes.
  */
 
-// UCLASS is a Macro function used in Unreal's compiler.
+// UCLASS is a Macro function used the Unreal Header Tool (UHT).
 // It allows you to change access to class by other parts of the engine
 // (Blueprints, Content Browser, etc.) and other metadata.
 UCLASS()
@@ -23,9 +23,19 @@ class STRATEGYGAME_API UHexBase : public UUserDefinedStruct
 	// required by the engine."
 	GENERATED_BODY()
 
-private:
+public:
 	// Axial storage of cubic coordinates. (q + r + s == 0)
+
+	// UPROPERTY macro allows the UHT to give access to the variable in
+	// the editor and Blueprints with keywords. Also enables the reflective
+	// debugging and garbage collector system to see it.
+
+	// Q part of hex coordinate.
+	UPROPERTY()
 	int32 q_;
+
+	// R part of hex coordinate.
+	UPROPERTY()
 	int32 r_;
 
 public:
@@ -33,10 +43,8 @@ public:
 	// FYI: The U prefix denotes it is a gameplay object that
 	// cannot be directly instanced into the world. They are
 	// usually Components attached to Actors.
-	UHexBase()
+	UHexBase() : UUserDefinedStruct()
 	{
-		q_ = 0;
-		r_ = 0;
 	}
 
 	// Axial constructor.
@@ -52,7 +60,17 @@ public:
 		q_ = q;
 		r_ = r;
 	}
-	
+
+	void SetQ(int32 q)
+	{
+		q_ = q;
+	}
+
+	void SetR(int32 r)
+	{
+		r_ = r;
+	}
+
 	const int32 q() { return q_; }
 	const int32 r() { return r_; }
 	const int32 s() { return -q_ - r_; }
@@ -91,7 +109,7 @@ public:
 	}
 
 	// Find the distance between two HexBase (Based on Manhattan distance).
-	int32 hexDistance(UHexBase& a, UHexBase& b);
+	friend int32 hexDistance(UHexBase& a, UHexBase& b);
 
 
 };

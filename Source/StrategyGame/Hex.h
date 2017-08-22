@@ -32,6 +32,13 @@ public:
 	// Sets default values for this actor's properties
 	AHex();
 
+	// TArray of UHexBases used with hex math to find neighboring
+	// hexes, movement, etc.
+	TArray<UHexBase> directions;
+
+
+	//UHexBase test; // Just declaring this makes UE4 crash!
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
