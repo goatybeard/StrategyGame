@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include "HexBase.h"
+//#include "HexBase.h"
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "Grid.generated.h"
@@ -13,9 +13,15 @@
 * and has a Tick function. ('A' prefix means Actor)
 */
 
+// UCLASS is a Macro function used by the Unreal Header Tool (UHT).
+// It allows you to change access to class by other parts of the engine
+// (Blueprints, Content Browser, etc.) and other metadata.
 UCLASS()
 class STRATEGYGAME_API AGrid : public AActor
 {
+	// GENERATED_BODY is a UHT macro that takes no arguments and
+	// "sets up the class to support the infrastructure
+	// required by the engine."
 	GENERATED_BODY()
 
 private:
@@ -35,10 +41,18 @@ private:
 	const float i3 = sqrt(3.0f) / 3.0f;
 
 	// Float vector defining where the grid will be centered.
+	// UPROPERTY macro allows the UHT to give access to the variable in
+	// the editor and Blueprints with keywords. Also enables the reflective
+	// debugging and garbage collector system to see it.
+	// EditAnywhere allows it to be edited in the Editor and BPs.
+	UPROPERTY(EditAnywhere)
 	FVector origin;
 
 	// Variables to scale the grid in the World.
+	UPROPERTY(EditAnywhere)
 	float sizeX;
+
+	UPROPERTY(EditAnywhere)
 	float sizeY;
 	
 public:	
@@ -54,6 +68,6 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	// Convert Hex coord to World.
-	FVector hexToWorld(const UHexBase& h);
+	FVector hexToWorld(const FIntVector& h);
 	
 };

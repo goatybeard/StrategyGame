@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "Hex.h"
-#include "HexBase.h"
+//#include "HexBase.h"
 
 
 // Sets default values for the
@@ -18,15 +18,13 @@ AHex::AHex()
 	// array.Add() copies or moves an existing instance of the element type.
 	// array.Emplace() constructs a new instance of the element type.
 	directions.Reserve(6);
-	/*directions.Emplace(UHexBase( 1,  0));
-	directions.Emplace(UHexBase( 1, -1));
-	directions.Emplace(UHexBase( 0, -1));
-	directions.Emplace(UHexBase(-1,  0));
-	directions.Emplace(UHexBase(-1,  1));
-	directions.Emplace(UHexBase( 0,  1));
-	*/
+	directions.Emplace(FIntVector( 1,  0, -1));
+	directions.Emplace(FIntVector( 1, -1,  0));
+	directions.Emplace(FIntVector( 0, -1,  1));
+	directions.Emplace(FIntVector(-1,  0,  1));
+	directions.Emplace(FIntVector(-1,  1,  0));
+	directions.Emplace(FIntVector( 0,  1, -1));
 
-	//directions.Emplace(UHexBase());
 
 	
 
@@ -46,5 +44,17 @@ void AHex::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+}
+
+// Manhattan distance from 0, 0, 0 to hex.
+int32 AHex::HexLength(FIntVector hex)
+{
+	return int32((abs(hex.X) + abs(hex.Y) + abs(hex.Z)) / 2);
+}
+
+// Manhattan distance from hex a to hex b.
+int32 AHex::HexDistance(FIntVector & a, FIntVector & b)
+{
+	return HexLength(a - b);
 }
 

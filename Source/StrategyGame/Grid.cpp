@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "Grid.h"
-#include "HexBase.h"
+//#include "HexBase.h"
 
 
 // Sets default values for the
@@ -35,10 +35,10 @@ void AGrid::Tick(float DeltaTime)
 
 }
 
-FVector AGrid::hexToWorld(const UHexBase & h)
+FVector AGrid::hexToWorld(const FIntVector & h)
 {
-	float x = (m0 * h.q() + m1 * h.r()) * sizeX;
-	float y = (m2 * h.q() + m1 * h.r()) * sizeY;
+	float x = (m0 * h.X + m1 * h.Y) * sizeX;
+	float y = (m2 * h.X + m1 * h.Y) * sizeY;
 	return FVector(x, y, 0.0f);
 }
 

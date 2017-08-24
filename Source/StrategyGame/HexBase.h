@@ -12,13 +12,13 @@
  * collection and better integration with other Unreal classes.
  */
 
-// UCLASS is a Macro function used the Unreal Header Tool (UHT).
+// UCLASS is a Macro function used by the Unreal Header Tool (UHT).
 // It allows you to change access to class by other parts of the engine
 // (Blueprints, Content Browser, etc.) and other metadata.
 UCLASS()
 class STRATEGYGAME_API UHexBase : public UUserDefinedStruct
 {
-	// GENERATED_BODY is a macro that takes no arguments and
+	// GENERATED_BODY is a UHT macro that takes no arguments and
 	// "sets up the class to support the infrastructure
 	// required by the engine."
 	GENERATED_BODY()
@@ -109,7 +109,7 @@ public:
 	}
 
 	// Find the distance between two HexBase (Based on Manhattan distance).
-	friend int32 hexDistance(UHexBase& a, UHexBase& b);
+	//friend int32 hexDistance(UHexBase& a, UHexBase& b);
 
 
 };
