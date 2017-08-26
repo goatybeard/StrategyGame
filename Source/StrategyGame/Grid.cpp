@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "Grid.h"
+#include "Hex.h"
 //#include "HexBase.h"
 
 
@@ -16,6 +17,22 @@ AGrid::AGrid()
 
 	sizeX = 1.0f;
 	sizeY = 1.0f;
+
+	// Test map.
+	hexMap.Reserve(10);
+	for (int32 i = 0; i < 10; i++)
+	{
+		hexMap.Emplace(FHexRow());
+
+		for (int32 j = 0; j < 10; j++)
+		{
+			FIntVector hexCoords(i, j, 0);
+			//AHex* hex = CreateDefaultSubobject<AHex>(this, TEXT("Test"));
+
+			hexMap[i].Row.Emplace();
+			//hexMap[i].Row[j]->setHexCoords(temp);
+		}
+	}
 }
 
 // Called when the game starts or when spawned
@@ -35,7 +52,7 @@ void AGrid::Tick(float DeltaTime)
 
 }
 
-FVector AGrid::hexToWorld(const FIntVector & h)
+FVector AGrid::hexToWorld(const FIntVector& h)
 {
 	float x = (m0 * h.X + m1 * h.Y) * sizeX;
 	float y = (m2 * h.X + m1 * h.Y) * sizeY;

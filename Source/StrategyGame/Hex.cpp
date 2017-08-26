@@ -25,7 +25,7 @@ AHex::AHex()
 	directions.Emplace(FIntVector(-1,  1,  0));
 	directions.Emplace(FIntVector( 0,  1, -1));
 
-
+	hexMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("HexMesh"));
 	
 
 }

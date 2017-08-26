@@ -37,6 +37,8 @@ private:
 	FIntVector HexCoords;
 
 	// 3d model and other components will go here.
+	UPROPERTY(EditAnywhere)
+	UStaticMeshComponent* hexMesh;
 	
 public:	
 	// Sets default values for this actor's properties

@@ -3,6 +3,8 @@
 #pragma once
 
 //#include "HexBase.h"
+#include "Hex.h"
+
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "Grid.generated.h"
@@ -12,6 +14,17 @@
 * AActor is a UObject that can be placed in the world
 * and has a Tick function. ('A' prefix means Actor)
 */
+
+// Struct holding AHex. Part of the map array.
+// Required to make a multi-dimensional array.
+USTRUCT()
+struct FHexRow
+{
+	GENERATED_USTRUCT_BODY()
+
+	UPROPERTY(VisibleAnywhere)
+	TArray<AHex*> Row;
+};
 
 // UCLASS is a Macro function used by the Unreal Header Tool (UHT).
 // It allows you to change access to class by other parts of the engine
@@ -54,6 +67,11 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	float sizeY;
+
+	// TArray of FHexRow to hold the map.
+	// Map[i].Row[j]	i == column  j == row
+	UPROPERTY(VisibleAnywhere)
+	TArray<FHexRow> hexMap;
 	
 public:	
 	// Sets default values for this actor's properties
