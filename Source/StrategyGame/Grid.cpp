@@ -27,7 +27,10 @@ AGrid::AGrid()
 		for (int32 j = 0; j < 10; j++)
 		{
 			FIntVector hexCoords(i, j, 0);
-			//AHex* hex = CreateDefaultSubobject<AHex>(this, TEXT("Test"));
+			//FTransform SpawnLocAndRot;
+			//SpawnLocAndRot.AddToTranslation(hexToWorld(hexCoords));
+			//UWorld* World = GetWorld();
+			//AHex* hex = World->SpawnActorDeferred<AHex>(AHex::StaticClass(),SpawnLocAndRot);
 
 			hexMap[i].Row.Emplace();
 			//hexMap[i].Row[j]->setHexCoords(temp);

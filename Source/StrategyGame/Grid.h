@@ -72,6 +72,9 @@ private:
 	// Map[i].Row[j]	i == column  j == row
 	UPROPERTY(VisibleAnywhere)
 	TArray<FHexRow> hexMap;
+
+	// The world that the map will be spawned in.
+	//UWorld* World = GetWorld();
 	
 public:	
 	// Sets default values for this actor's properties
